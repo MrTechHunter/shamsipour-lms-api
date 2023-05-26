@@ -17,6 +17,7 @@ app.use(cors());
 
 app.use("/auth", require("./routes/authRoute"));
 app.use("/", require("./routes/courseRoute"));
+app.use("/quiz", require("./routes/quizRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/profile", require("./routes/profileRoute"));
 app.use("/enroll-course", require("./routes/enrollRoute"));
