@@ -5,12 +5,11 @@ const questionSchema = mongoose.Schema(
     {
         question: {
             type: String,
+            default: []
         },
         options: {
             type: Array,
-        },
-        answers: {
-            type: Number,
+            default: []
         },
         createdAt: {
             type: Date, default: Date.now

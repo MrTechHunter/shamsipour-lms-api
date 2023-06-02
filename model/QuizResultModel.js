@@ -6,15 +6,17 @@ const { Schema } = mongoose;
 
 const quizResultSchema = mongoose.Schema(
     {
-        username: { type: String },
         result: { type: Array, default: [] },
         attempts: { type: Number, default: 0 },
         points: { type: Number, default: 0 },
         achived: { type: String, default: '' },
-        createdAt: { type: Date, default: Date.now }
+        createdAt: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+        },
     }
 )
 
-const QuizResultModel=mongoose.model("QuizResult", quizResultSchema)
+const QuizResultModel = mongoose.model("Quizresult", quizResultSchema)
 
-module.exports=QuizResultModel
+module.exports = QuizResultModel

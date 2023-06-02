@@ -18,21 +18,31 @@ const {
     postQuestion__controller
   );
   
-  router.get("/questions", getQuestions__controller);
+  router.get("/questions",
+  // requireLogin,
+  getQuestions__controller);
 
-  router.delete('/delete',requireLogin,adminAuthentication,deleteQustions__Controller)
+  router.delete('/delete',
+  // requireLogin,
+  // adminAuthentication,
+  deleteQustions__Controller)
 
   // Quiz results
   router.post(
     "/post-result",
-    requireLogin,
-    adminAuthentication,
+    // requireLogin,
+    // adminAuthentication,
     postQuizResult__controller
   );
 
-  router.get("/get-result", requireLogin, getQuizResult__Controller);
+  router.get("/get-result",
+  // requireLogin,
+  getQuizResult__Controller);
 
-  router.delete('/delete-result',requireLogin,adminAuthentication,deleteQuizResults__Controller)
+  router.delete('/delete-result',
+  // requireLogin,
+  // adminAuthentication,
+  deleteQuizResults__Controller)
 
   
   module.exports = router;
