@@ -62,10 +62,10 @@ module.exports.getQuizResult__Controller = async (req, res, next) => {
 /** post all result */
 module.exports.postQuizResult__controller = async (req, res, next) => {
     try {
-        const { username, result, attempts, points, achived } = req.body;
-        if (!username && !result) throw new Error('Data Not Provided...!');
+        const {result, attempts, points, achived } = req.body;
+        if (!result) throw new Error('Data Not Provided...!');
 
-        QuizResult.create({ username, result, attempts, points, achived }, function (err, data) {
+        QuizResult.create({ result, attempts, points, achived }, function (err, data) {
             res.json({ msg: "Result Saved Successfully...!" })
         })
     } catch (err) {
