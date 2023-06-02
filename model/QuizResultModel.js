@@ -15,6 +15,6 @@ const quizResultSchema = mongoose.Schema(
     }
 )
 
-const QuizResultModel=mongoose.model("QuizResult", quizResultSchema)
+const QuizResultModel=mongoose.model("Quizresult", quizResultSchema)
 
 module.exports=QuizResultModel
