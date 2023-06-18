@@ -18,7 +18,7 @@ const {
     postQuestion__controller
   );
   
-  router.get("/questions",
+  router.get("/quiz-questions",
   // requireLogin,
   getQuestions__controller);
 
@@ -29,7 +29,7 @@ const {
 
   // Quiz results
   router.post(
-    "/post-result",
+    "/submit-answers",
     // requireLogin,
     // adminAuthentication,
     postQuizResult__controller

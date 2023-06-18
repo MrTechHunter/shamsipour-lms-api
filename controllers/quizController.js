@@ -16,7 +16,7 @@ module.exports.postQuestion__controller = async (req, res, next) => {
     }
 };
 
-/** get all questions */
+// GET all quiz questions
 module.exports.getQuestions__controller = async (req, res, next) => {
     try {
         const questions = await Questions.find();
@@ -59,15 +59,22 @@ module.exports.getQuizResult__Controller = async (req, res, next) => {
     }
 };
 
-/** post all result */
+// POST quiz answers and return score
 module.exports.postQuizResult__controller = async (req, res, next) => {
+    const { submittedAnswers } = req.body;
+    let score = 0;
+    let feedback = [];
     try {
-        const {result, attempts, points, achived } = req.body;
-        if (!result) throw new Error('Data Not Provided...!');
-
-        QuizResult.create({ result, attempts, points, achived }, function (err, data) {
-            res.json({ msg: "Result Saved Successfully...!" })
-        })
+        const quizQuestions = await Questions.find();
+        quizQuestions.forEach((question, index) => {
+            if (question.answer == submittedAnswers[index]) {
+                score++;
+                feedback.push({ question: question.question, correct: true });
+            } else {
+                feedback.push({ question: question.question, correct: false });
+            }
+        });
+        res.json({ score, feedback });
     } catch (err) {
         console.log(err);
         return res.status(400).json({
