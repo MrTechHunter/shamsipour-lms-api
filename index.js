@@ -13,11 +13,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+
+// Swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
 //TODO: Routes
 
 app.use("/auth", require("./routes/authRoute"));
 app.use("/", require("./routes/courseRoute"));
-app.use("/", require("./routes/quizRoute"));
+app.use("/quiz", require("./routes/quizRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/profile", require("./routes/profileRoute"));
 app.use("/enroll-course", require("./routes/enrollRoute"));

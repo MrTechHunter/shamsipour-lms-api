@@ -5,14 +5,17 @@ const questionSchema = mongoose.Schema(
     {
         question: {
             type: String,
-            default: []
+            required: true,
         },
-        options: {
-            type: Array,
-            default: []
-        },
-        createdAt: {
-            type: Date, default: Date.now
+        options: [
+            {
+                type: String,
+                required: true,
+            },
+        ],
+        answer: {
+            type: String,
+            required: true,
         },
     },
     {
