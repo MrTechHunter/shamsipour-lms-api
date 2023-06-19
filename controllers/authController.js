@@ -61,11 +61,44 @@ module.exports.login__controller = async (req, res, next) => {
           });
         }
 
-        userInfo.password=undefined
-        
-        const token = jwt.sign({ _id: userInfo._id,name: userInfo.userName,email: userInfo.email,role: userInfo.role }, SECRET_KEY);
+        userInfo.password = undefined
+
+        const token = jwt.sign({ _id: userInfo._id, name: userInfo.userName, email: userInfo.email, role: userInfo.role }, SECRET_KEY);
+
+
+        MenuList = []
+
+        AdminMenuList = [
+          'داشبورد',
+          'مشخصات دوره',
+          'مشخصات دانشجو',
+          'مشخصات استاد',
+          'خروج'
+        ]
+
+        TeacherMenuList = [
+          'داشبورد',
+          'خروج'
+        ]
+
+        StudentMenuList = [
+          'داشبورد',
+          'کتابخانه',
+          'پروفایل',
+          'همه دوره ها',
+          'خروج'
+        ]
+
+        userInfo.role === "Admin"
+        ? MenuList = AdminMenuList
+            : userInfo.role === "Teacher"
+        ? MenuList = TeacherMenuList
+            : userInfo.role === "Student"
+        ?   MenuList = StudentMenuList : []
+
         return res.status(200).json({
-          userInfo,
+          // userInfo,
+          MenuList,
           token,
         });
       })
