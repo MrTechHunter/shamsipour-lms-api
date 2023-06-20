@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 
-const courseSchema = mongoose.Schema(
+const roadmapSchema = mongoose.Schema(
   {
-    courseName: {
+    roadmapName: {
       type: String,
       required: true,
     },
-    courseDescription: {
+    roadmapDescription: {
       type: String,
       required: true,
     },
 
-    courseThumbnail: {
+    roadmapThumbnail: {
       type: String,
       required: true,
     },
-    lessons: [{
+    roadmap: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Lesson",
+      ref: "Course",
     }],
     createdAt: {
       type: mongoose.Schema.Types.ObjectId,
@@ -29,6 +29,6 @@ const courseSchema = mongoose.Schema(
   }
 );
 
-const CourseModel = mongoose.model("Course", courseSchema);
+const RoadmapModel = mongoose.model("Roadmap", roadmapSchema);
 
-module.exports = CourseModel;
+module.exports = RoadmapModel;

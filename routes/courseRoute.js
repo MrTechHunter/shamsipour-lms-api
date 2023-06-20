@@ -12,16 +12,23 @@ const upload = require("../middlewares/multer");
 
 router.post(
   "/post-course",
-  requireLogin,
-  adminAuthentication,
+  // requireLogin,
+  // adminAuthentication,
   upload.single("img"),
   postCourse__controller
 );
 
-router.get("/get-courses", requireLogin, getCourses__controller);
+router.get("/get-courses",
+// requireLogin,
+getCourses__controller);
 
-router.get("/get-course/:courseId", requireLogin, getOneCourse__controller)
+router.get("/get-course/:courseId",
+// requireLogin,
+getOneCourse__controller)
 
-router.delete('/delete',requireLogin,adminAuthentication,deleteCourse__Controller)
+router.delete('/delete',
+// requireLogin,
+// adminAuthentication,
+deleteCourse__Controller)
 
 module.exports = router;

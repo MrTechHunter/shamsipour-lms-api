@@ -24,6 +24,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use("/auth", require("./routes/authRoute"));
 app.use("/", require("./routes/courseRoute"));
+app.use("/", require("./routes/lessonRoute"));
 app.use("/quiz", require("./routes/quizRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/profile", require("./routes/profileRoute"));
