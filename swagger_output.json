@@ -13,6 +13,9 @@
   "paths": {
     "/auth/login": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -46,6 +49,9 @@
     },
     "/auth/register": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -85,6 +91,9 @@
     },
     "/post-course": {
       "post": {
+        "tags": [
+          "Course"
+        ],
         "description": "",
         "parameters": [
           {
@@ -123,6 +132,9 @@
     },
     "/get-courses": {
       "get": {
+        "tags": [
+          "Course"
+        ],
         "description": "",
         "parameters": [
           {
@@ -146,6 +158,9 @@
     },
     "/get-course/{courseId}": {
       "get": {
+        "tags": [
+          "Course"
+        ],
         "description": "",
         "parameters": [
           {
@@ -175,6 +190,9 @@
     },
     "/delete": {
       "delete": {
+        "tags": [
+          "Course"
+        ],
         "description": "",
         "parameters": [
           {
@@ -210,6 +228,9 @@
     },
     "/quiz/add-question": {
       "post": {
+        "tags": [
+          "Quiz"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -224,6 +245,9 @@
     },
     "/quiz/quiz-questions": {
       "get": {
+        "tags": [
+          "Quiz"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -238,6 +262,9 @@
     },
     "/quiz/delete": {
       "delete": {
+        "tags": [
+          "Quiz"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -250,8 +277,101 @@
         }
       }
     },
+	    "/post-lesson": {
+      "post": {
+        "tags": [
+          "Lesson"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lessonDescription": {
+                  "example": "any"
+                },
+                "lessonName": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/get-lessons": {
+      "get": {
+        "tags": [
+          "Lesson"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/get-lesson/{lessonId}": {
+      "get": {
+        "tags": [
+          "Lesson"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "lessonId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/quiz/submit-answers": {
       "post": {
+        "tags": [
+          "Quiz"
+        ],
         "description": "",
         "parameters": [
           {
@@ -277,36 +397,11 @@
         }
       }
     },
-    "/quiz/get-result": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/quiz/delete-result": {
-      "delete": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
     "/users/student": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -330,6 +425,9 @@
     },
     "/users/teacher": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -353,6 +451,9 @@
     },
     "/users/delete-teacher": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -376,6 +477,9 @@
     },
     "/enroll-course/": {
       "put": {
+        "tags": [
+          "Course"
+        ],
         "description": "",
         "parameters": [
           {

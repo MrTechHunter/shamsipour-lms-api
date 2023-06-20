@@ -10,22 +10,22 @@ const router = require("express").Router();
 
 router.get(
   "/student",
-  requireLogin,
-  adminAuthentication,
+  // requireLogin,
+  // adminAuthentication,
   getStudent__controller
 );
 
 router.get(
   "/teacher",
-  requireLogin,
-  adminAuthentication,
+  // requireLogin,
+  // adminAuthentication,
   getTeacher__controller
 );
 
 router.get(
   "/delete-teacher",
-  requireLogin,
-  adminAuthentication,
+  // requireLogin,
+  // adminAuthentication,
   deleteTeacher__controller
 );
 
