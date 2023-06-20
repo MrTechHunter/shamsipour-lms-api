@@ -19,8 +19,8 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 const options = { customCssUrl: './public/swagger-ui.css', customSiteTitle: "Shamsipour LMS - Swagger" }
 
-routes.use('/api-docs', swaggerUi.serve);
-routes.get('/api-docs', swaggerUi.setup(swaggerFile));
+routes.use('/docs', swaggerUi.serve);
+routes.get('/docs', swaggerUi.setup(swaggerFile));
 routes.get('/', swaggerUi.setup(swaggerFile, options));
 
 //TODO: Routes
