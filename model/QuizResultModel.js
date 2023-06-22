@@ -1,15 +1,11 @@
 const mongoose = require('mongoose')
-const { Schema } = mongoose;
-
 
 /** Quiz result model */
 
 const quizResultSchema = mongoose.Schema(
     {
-        result: { type: Array, default: [] },
-        attempts: { type: Number, default: 0 },
-        points: { type: Number, default: 0 },
-        achived: { type: String, default: '' },
+        score: { type: Number },
+        feedback: { type: Array },
         createdAt: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",

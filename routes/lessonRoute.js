@@ -11,7 +11,7 @@ const {
   const upload = require("../middlewares/multer");
   
   router.post(
-    "/post-lesson",
+    "/add-lesson",
     // requireLogin,
     // adminAuthentication,
     upload.single("img"),
@@ -28,7 +28,8 @@ const {
   
   router.delete('/delete',
   // requireLogin,
-  adminAuthentication,deleteLesson__Controller)
+  // adminAuthentication,
+  deleteLesson__Controller)
   
   module.exports = router;
   

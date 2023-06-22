@@ -26,9 +26,11 @@ app.get('/', swaggerUi.setup(swaggerFile, options));
 //TODO: Routes
 
 app.use("/auth", require("./routes/authRoute"));
-app.use("/", require("./routes/courseRoute"));
-app.use("/", require("./routes/lessonRoute"));
-app.use("/quiz", require("./routes/quizRoute"));
+app.use("/course", require("./routes/courseRoute"));
+app.use("/lesson", require("./routes/lessonRoute"));
+app.use("/roadmap", require("./routes/roadmapRoute"));
+app.use("/question", require("./routes/quizRoute"));
+app.use("/quiz", require("./routes/quizResultRoute"));
 app.use("/users", require("./routes/userRoute"));
 app.use("/profile", require("./routes/profileRoute"));
 app.use("/enroll-course", require("./routes/enrollRoute"));

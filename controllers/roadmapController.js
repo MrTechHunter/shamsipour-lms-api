@@ -1,11 +1,11 @@
-const LessonModel = require("../model/LessonModel");
+const RoadmapModel = require("../model/RoadmapModel");
 const cloudinary=require('../middlewares/cloudinary')
 
-module.exports.postLesson__controller = async (req, res, next) => {
+module.exports.postRoadmap__controller = async (req, res, next) => {
     try {
-        const { lessonDescription, lessonName } = req.body;
+        const { roadmapDescription, roadmapName } = req.body;
     
-        if (!lessonDescription || !lessonName || !req.file) {
+        if (!roadmapDescription || !roadmapName || !req.file) {
           return res.status(400).json({
             error: "Please Provide All Information",
           });
@@ -16,13 +16,13 @@ module.exports.postLesson__controller = async (req, res, next) => {
     
         //const url = req.protocol + "://" + req.get("host");
     
-        const lesson = new LessonModel({
-          lessonDescription,
-          lessonName,
-          lessonThumbnail: pic.secure_url,
+        const roadmap = new RoadmapModel({
+          roadmapDescription,
+          roadmapName,
+          roadmapThumbnail: pic.secure_url,
           createdAt: req.user._id,
         });
-        lesson
+        roadmap
           .save()
           .then((result) => {
             return res.status(200).json({
@@ -43,14 +43,14 @@ module.exports.postLesson__controller = async (req, res, next) => {
       }
 };
 
-module.exports.getLessons__controller = async (req, res, next) => {
+module.exports.getRoadmaps__controller = async (req, res, next) => {
     try {
-      const lessons = await LessonModel.find().populate(
+      const roadmaps = await RoadmapModel.find().populate(
         "createdAt",
         "role _id userName email"
       );
       return res.status(200).json({
-        lessons,
+        roadmaps,
       });
     } catch (err) {
       console.log(err);
@@ -60,12 +60,12 @@ module.exports.getLessons__controller = async (req, res, next) => {
     }
 };
 
-module.exports.getOneLesson__controller = async (req, res, next) => {
+module.exports.getOneRoadmap__controller = async (req, res, next) => {
     try {
-      const { lessonId } = req.params;
-      const lesson = await LessonModel.findOne({ _id: lessonId });
+      const { roadmapId } = req.params;
+      const roadmap = await RoadmapModel.findOne({ _id: roadmapId });
       return res.status(200).json({
-        lesson,
+        roadmap,
       });
     } catch (err) {
       console.log(err);
@@ -75,13 +75,12 @@ module.exports.getOneLesson__controller = async (req, res, next) => {
     }
 };
 
-module.exports.deleteLesson__Controller = async (req, res, next) => {
+module.exports.deleteRoadmap__Controller = async (req, res, next) => {
     try {
-      const { lessonId } = req.body;
-    //   console.log(lessonId)
-      const lesson = await LessonModel.findOneAndDelete({ _id: lessonId });
+      const { roadmapId } = req.body;
+      const roadmap = await RoadmapModel.findOneAndDelete({ _id: roadmapId });
       return res.status(200).json({
-        lesson,
+        roadmap,
       });
     } catch (err) {
       console.log(err);
