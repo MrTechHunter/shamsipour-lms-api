@@ -1,13 +1,39 @@
-const Questions = require("../model/QuestionModel");
-const QuizResult = require("../model/QuizResultModel");
+const QuizModel = require("../model/QuizModel");
+const Quizzes = require("../model/QuizModel");
 const { questions, answers } = require("./data");
 
-/** insert all questions */
-module.exports.postQuestion__controller = async (req, res, next) => {
+/** insert all quizzes */
+module.exports.postQuiz__controller = async (req, res, next) => {
     try {
-        Questions.insertMany({ questions, answers }, function (err, data) {
-            res.json({ msg: "Data Saved Successfully...!" })
-        })
+        const { question, options } = req.body;
+
+        if (!question || !options || !req.file) {
+            return res.status(400).json({
+                error: "Please Provide All Information",
+            });
+        }
+
+        const pic=await cloudinary.uploader.upload(req.file.path)
+
+        const quiz = new QuizModel({
+            question,
+            options,
+            questionThumbnail,
+            createdAt: req.user._id,
+        });
+        quiz
+            .save()
+            .then((result) => {
+                return res.status(200).json({
+                    result,
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                return res.status(400).json({
+                  error: "Something went wrong",
+                });
+            });
     } catch (err) {
         console.log(err);
         return res.status(400).json({
@@ -16,12 +42,12 @@ module.exports.postQuestion__controller = async (req, res, next) => {
     }
 };
 
-// GET all quiz questions
-module.exports.getQuestions__controller = async (req, res, next) => {
+// GET all quiz quizzes
+module.exports.getQuizzes__controller = async (req, res, next) => {
     try {
-        const questions = await Questions.find();
+        const quizzes = await Quizzes.find();
         return res.status(200).json({
-            questions,
+            quizzes,
         });
     } catch (err) {
         console.log(err);
@@ -31,63 +57,11 @@ module.exports.getQuestions__controller = async (req, res, next) => {
     }
 };
 
-/** delete all questions */
-module.exports.deleteQustions__Controller = async (req, res, next) => {
+/** delete all quizzes */
+module.exports.deleteQuizzes__Controller = async (req, res, next) => {
     try {
-        await Questions.deleteMany();
-        res.json({ msg: "Questions Deleted Successfully...!" });
-    } catch (err) {
-        console.log(err);
-        return res.status(400).json({
-            error: "Something went wrong",
-        });
-    }
-};
-
-/** get all result */
-module.exports.getQuizResult__Controller = async (req, res, next) => {
-    try {
-        const quizResult = await QuizResult.find();
-        return res.status(200).json({
-            quizResult,
-        });
-    } catch (err) {
-        console.log(err);
-        return res.status(400).json({
-            error: "Something went wrong",
-        });
-    }
-};
-
-// POST quiz answers and return score
-module.exports.postQuizResult__controller = async (req, res, next) => {
-    const { submittedAnswers } = req.body;
-    let score = 0;
-    let feedback = [];
-    try {
-        const quizQuestions = await Questions.find();
-        quizQuestions.forEach((question, index) => {
-            if (question.answer == submittedAnswers[index]) {
-                score++;
-                feedback.push({ question: question.question, correct: true });
-            } else {
-                feedback.push({ question: question.question, correct: false });
-            }
-        });
-        res.json({ score, feedback });
-    } catch (err) {
-        console.log(err);
-        return res.status(400).json({
-            error: "Something went wrong",
-        });
-    }
-};
-
-/** delete all result */
-module.exports.deleteQuizResults__Controller = async (req, res, next) => {
-    try {
-        await QuizResult.deleteMany();
-        res.json({ msg: "Questions Deleted Successfully...!" });
+        await Quizzes.deleteMany();
+        res.json({ msg: "Quizzes Deleted Successfully...!" });
     } catch (err) {
         console.log(err);
         return res.status(400).json({

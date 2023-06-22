@@ -10,12 +10,11 @@ const lessonSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-
     lessonThumbnail: {
       type: String,
       required: true,
     },
-    course: [{
+    lesson: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
     }],
