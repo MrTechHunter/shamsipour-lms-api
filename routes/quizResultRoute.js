@@ -10,7 +10,7 @@ const {
   const router = require("express").Router();
   
   router.post(
-    "/post-",
+    "/add-quiz-result",
     // requireLogin,
     // adminAuthentication,
     postQuizResult__controller
